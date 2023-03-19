@@ -22,7 +22,7 @@
   }
   
   .sidebar { grid-area: sidebar ;min-width: 330px; background-color:#2A3948;}
-  .body { grid-area: body;background-color: #E6EBEF}
+  .body { grid-area: body;background-color: #E6EBEF; height: 100%}
   
   .header { grid-area: header;background-color: #FFFFFF; height: 106px }
   .main { grid-area: main;   }

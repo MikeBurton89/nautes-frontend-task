@@ -38,11 +38,9 @@ function ResponsiveAppBar() {
                   Admin
                 </Typography>
               </Stack>
-              <Tooltip title="Apri menù">
-                <IconButton sx={{ p: 0 }}>
-                  <Avatar />
-                </IconButton>
-              </Tooltip>
+              <IconButton sx={{ p: 0 }}>
+                <Avatar />
+              </IconButton>
             </Stack>
           </Box>
         </Toolbar>
