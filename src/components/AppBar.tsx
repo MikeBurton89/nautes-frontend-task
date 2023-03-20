@@ -29,7 +29,7 @@ function ResponsiveAppBar() {
             <Image src={logo} alt="logo" />
           </Box>
           <Box sx={{ flexGrow: 0, mr: "30px" }}>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} alignItems='center'>
               <Stack>
                 <Typography color="#2A3948" variant="body2">
                   Alessandro,

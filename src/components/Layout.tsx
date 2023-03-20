@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <section className={styles["inner-layout"]}>
           <div className={styles.sidebar}>
             <Box sx={{mt:'35px'}}>
-            {options.map((option, idx)=> <MenuItem key={idx} href={option.href} title={option.title}/> )}
+            {options.map((option, idx)=> <MenuItem key={idx} index={idx} href={option.href} title={option.title}/> )}
             </Box>
           </div>
           <div className={styles.body}><Grid height={'100%'} mt='2rem' container justifyContent={'center'} alignItems={'start'}>{children}</Grid></div>
