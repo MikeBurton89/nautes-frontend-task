@@ -3,18 +3,30 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Box, Button } from "@mui/material";
 
 import { useMutation, gql } from "@apollo/client";
+import { GET_ALL_TODOS } from "@/pages/to-be-completed";
 
-const UPDATE_TO_DO = gql `mutation UpdateToDo($ID: ID!, $done: Boolean) {
-    updateTodo(id: $ID, done:$done) {
-      id
-      done
-    }
-  }` 
+const UPDATE_TO_DO = gql `mutation UpdateTodo($id: ID!, $done: Boolean) {
+  updateTodo(
+    id: $id,
+    done: $done
+  ) {
+    id
+    done
+  }
+}` 
 
-const RenderDoneButton = (params) => {
-    const [updateTodo, {data,loading, error}] = useMutation(UPDATE_TO_DO)
+const RenderDoneButton = ({id}) => {
+    const [updateTodo, {data,loading, error}] = useMutation(UPDATE_TO_DO, {
+      refetchQueries: [{ query: GET_ALL_TODOS }],
+    })
+
+    const handleDoneClick = () => {
+      updateTodo({ variables: { id, done: true } });
+    };
+  
   return (
       <Button
+      onClick={handleDoneClick}
         variant="contained"
         color="inherit"
         size="medium"
@@ -46,7 +58,7 @@ const TaskTable = ({ fetchedData, completed }) => {
       headerClassName: "super-app-theme--header",
       minWidth: 150,
       align:'right',
-      renderCell: completed ? null : (params) => RenderDoneButton(params.row),
+      renderCell: completed ? null : (params)=> <RenderDoneButton id={params.row.id}/>,
     },
   ];
 

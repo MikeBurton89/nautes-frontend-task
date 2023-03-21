@@ -4,7 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import TaskManagementComponent from "@/components/TaskManagementComponent";
 import AddTodo from "@/components/AddTodo";
 
-const GET_ALL_TODOS = gql`
+export const GET_ALL_TODOS = gql`
   query GetTodos {
     allTodos(filter: { done: false }) {
       id
