@@ -4,6 +4,7 @@ import { Box, Button } from "@mui/material";
 
 import { useMutation, gql } from "@apollo/client";
 import { GET_ALL_TODOS } from "@/pages/to-be-completed";
+import { GET_DONE_TODOS } from "@/pages/completed";
 
 const UPDATE_TO_DO = gql `mutation UpdateTodo($id: ID!, $done: Boolean) {
   updateTodo(
@@ -17,7 +18,7 @@ const UPDATE_TO_DO = gql `mutation UpdateTodo($id: ID!, $done: Boolean) {
 
 const RenderDoneButton = ({id}) => {
     const [updateTodo, {data,loading, error}] = useMutation(UPDATE_TO_DO, {
-      refetchQueries: [{ query: GET_ALL_TODOS }],
+      refetchQueries: [{query: GET_ALL_TODOS}, {query: GET_DONE_TODOS }],
     })
 
     const handleDoneClick = () => {
