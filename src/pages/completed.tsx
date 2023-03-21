@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client'
 import TaskManagementComponent from "@/components/TaskManagementComponent";
 import { CircularProgress, Grid } from "@mui/material";
 
-const GET_DONE_TODOS = gql `query GetTodos {
+export const GET_DONE_TODOS = gql `query GetTodos {
   allTodos(filter:{done:true}) {
     id
     User: User {
