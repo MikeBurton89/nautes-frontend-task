@@ -1,20 +1,27 @@
-import { DataGrid } from "@mui/x-data-grid";
-
 import React from "react";
+import { DataGrid } from "@mui/x-data-grid";
 import { Box, Button } from "@mui/material";
 
-const renderDoneButton = (params) => {
+import { useMutation, gql } from "@apollo/client";
+
+const UPDATE_TO_DO = gql `mutation UpdateToDo($ID: ID!, $done: Boolean) {
+    updateTodo(id: $ID, done:$done) {
+      id
+      done
+    }
+  }` 
+
+const RenderDoneButton = (params) => {
+    const [updateTodo, {data,loading, error}] = useMutation(UPDATE_TO_DO)
   return (
-    <strong>
       <Button
         variant="contained"
-        color="primary"
-        size="small"
-        style={{ marginLeft: 16 }}
+        color="inherit"
+        size="medium"
+        sx={{ marginLeft: 16, backgroundColor:'#2A3948', color: '#FAFBFC' }}
       >
         Svolgi
       </Button>
-    </strong>
   );
 };
 
@@ -39,7 +46,7 @@ const TaskTable = ({ fetchedData, completed }) => {
       headerClassName: "super-app-theme--header",
       minWidth: 150,
       align:'right',
-      renderCell: completed ? null : (params) => renderDoneButton(params.row),
+      renderCell: completed ? null : (params) => RenderDoneButton(params.row),
     },
   ];
 

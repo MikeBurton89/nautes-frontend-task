@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import TaskManagementComponent from "@/components/TaskManagementComponent";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
 const GET_DONE_TODOS = gql `query GetTodos {
   allTodos(filter:{done:true}) {
@@ -23,7 +23,10 @@ const Completed = () => {
     return <CircularProgress />;
   }
   return (
-    <TaskManagementComponent completed loading={loading} fetchedData={data?.allTodos} />
+    <Grid container width="90%" justifyItems={"center"}>
+      <TaskManagementComponent title='Attivitá completate' completed fetchedData={data?.allTodos} />
+    </Grid>
+    
   );
 }
 
